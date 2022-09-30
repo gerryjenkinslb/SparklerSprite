@@ -50,7 +50,7 @@ class Sparkler(pygame.sprite.DirtySprite):
             spark_angle = 2 * pi * random()
 
             # pick start inside a radiaus 1/10th total sparkler
-            start_len = choice(LEN_SAMPLES) * self.radius / 10
+            start_len = random() * self.radius / 20
             start_angle = 2 * pi * random()
 
             # convert angle and len to (x,y) tuples
@@ -69,40 +69,3 @@ class Sparkler(pygame.sprite.DirtySprite):
                     e = point_from_polar(end_pt, d, a)
                     pygame.draw.line(self.image, choice(self.colors), end_pt, e,
                                      choice((1, 2, 3)))
-
-YELLOW = (255, 255, 120)
-BLUE = (220, 220, 255)
-RED = (255, 220, 220)
-GREEN = (120, 255, 120)
-
-def example1():
-    pygame.init()
-    screen = pygame.display.set_mode((800, 800))
-    screen.fill(BLACK)
-
-    all_sprites_list = pygame.sprite.Group()
-
-    sparkler = Sparkler(800, colors=(RED, YELLOW, BLUE))
-    sparkler.rect.x = 0
-    sparkler.rect.y = 0
-
-    all_sprites_list.add(sparkler)
-
-    clock = pygame.time.Clock()
-
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        all_sprites_list.update()
-        screen.fill(BLACK)
-        all_sprites_list.draw(screen)
-        pygame.display.flip()
-        clock.tick(60)
-
-    pygame.quit()
-
-if __name__ == "__main__":
-    example1()

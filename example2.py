@@ -12,17 +12,20 @@ WHITE = (255, 255, 255)
 # moving sparklers
 
 class CirclingSparkler(Sparkler):
-    # sparkler start from at zero radians up radius distance from origin
-    # and moves around circle at speed per tick
-    def __init__(self, size, colors, origin, radius, speed=2*math.pi/250, start_angle=0.0):
+    # These sparklers move in circle with radius 
+    # starting at start_angle from screen origin point
+    # and moves around circle at speed radians change per tick
+    def __init__(self, size, colors, origin, radius, 
+                                         speed=2*math.pi/250, start_angle=0.0):
         """CirclingSparkler object constructor
 
                     Args:
                 size (float): size of square area sides for sparkler effect
                 colors (list of colors): List of colors to choose lines from
-                screen origin: center of sparkler rotation
+                screen origin: center of sparkler rotation in screen coordinates
                 radius: how far out to circle
                 speed: radians per tick to move in circle
+                start_angle: the initial position on the circle of spin
                 """
         super().__init__(size, colors)
         self.angle = start_angle
@@ -30,11 +33,14 @@ class CirclingSparkler(Sparkler):
         self.spin_radius = radius
         self.origin = origin
 
-        self.rect.center = point_from_polar(self.origin, self.spin_radius, self.angle)
+        # set initial screen coordinate center of sparkler
+        self.rect.center = point_from_polar(self.origin, 
+                                         self.spin_radius, self.angle)
 
-    def update(self): # on each tick
+    def update(self): # on each tick, rotate around
         self.angle += self.speed
-        self.rect.center = point_from_polar(self.origin, self.spin_radius, self.angle)
+        self.rect.center = point_from_polar(self.origin, 
+                                         self.spin_radius, self.angle)
         super().update()
 
 
@@ -45,9 +51,13 @@ def example2():
 
     all_sprites_list = pygame.sprite.Group()
 
+    # 3 sparklers each with different circle and colors. 
+    # note #2 move anti-clockwise
     sparkler1 = CirclingSparkler(500, (RED, YELLOW, BLUE), (400, 500), 200)
-    sparkler2 = CirclingSparkler(500, (RED, ), (500, 600), 150, speed=-2*math.pi/500)
-    sparkler3 = CirclingSparkler(500, (BLUE, YELLOW,), (500, 500), 100, speed=2*math.pi/500, start_angle=2*math.pi/4)
+    sparkler2 = CirclingSparkler(500, (RED, ), (500, 600), 150, 
+                                                      speed=-2*math.pi/500)
+    sparkler3 = CirclingSparkler(500, (BLUE, YELLOW,), (500, 500), 100, 
+                        speed=2*math.pi/500, start_angle=2*math.pi/4)
 
     all_sprites_list.add((sparkler1, sparkler2, sparkler3,))
 
