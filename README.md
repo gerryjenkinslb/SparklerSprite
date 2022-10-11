@@ -7,3 +7,4 @@ See Blog where Code is explained: [Code to create PyGame Sparkler Fireworks Effe
 Here is a picture of what the sparkler code does:
 
 ![example2.py ouput:](https://gjenkinsedu.com/post/pygame_sparkler_0009/SparklerExample2.gif)
+
