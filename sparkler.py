@@ -29,7 +29,7 @@ class Sparkler(pygame.sprite.DirtySprite):
 
             Args:
         size (float): size of sides of square for sparkler effect
-        colors (list of colors): List of colors to choose lines from
+        colors (list of colors): List of colors to for lines
         """
 
         super().__init__()
