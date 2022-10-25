@@ -28,7 +28,7 @@ class Sparkler(pygame.sprite.DirtySprite):
         """Sparkler object constructor
 
             Args:
-        size (float): size of square area sides for sparkler effect
+        size (float): size of sides of square for sparkler effect
         colors (list of colors): List of colors to choose lines from
         """
 
@@ -49,7 +49,7 @@ class Sparkler(pygame.sprite.DirtySprite):
             spark_len = choice(LEN_SAMPLES) * self.radius
             spark_angle = 2 * pi * random()
 
-            # pick start inside a radiaus 1/10th total sparkler
+            # pick start inside a radiaus 1/20th total sparkler
             start_len = random() * self.radius / 20
             start_angle = 2 * pi * random()
 
