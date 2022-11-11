@@ -20,7 +20,7 @@ BLACK = (0, 0, 0)
 def point_from_polar(origin, length, angle):
     x = origin[0] + length * sin(angle)
     y = origin[1] + length * cos(angle)
-    return x,y
+    return x, y
 
 
 class Sparkler(pygame.sprite.DirtySprite):
